@@ -12,21 +12,26 @@ import timeit
 import argparse
 
 import numpy as np
+import matplotlib.pyplot as plt
 
-import cA
-import dA
+from cA import cA
+from dA import dA
 
 import theano
 import theano.tensor as T
 
-def train(data, batch_size, learning_rate = 0.01, contraction_level = .1, corruption_level = 0.3, 
-            n_hidden = 7, training_epochs = 100, encoder = 'cA'):
+import config
+import utils
+
+def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01, contraction_level = .1, corruption_level = 0.3, 
+            training_epochs = 100, encoder = 'cA'):
     """
     The method to run autoencoder training against provided data with specified
     encoder type
     Arguments:
         data the the input data array
         batch_size the number of samples per batch
+        n_visible the number of input units
         learning_rate the learning rate
         contraction_level the contraction level for contractive auto-encoder
         corruption_level the corruption level to apply to input data for denoising auto-encoder
@@ -39,13 +44,13 @@ def train(data, batch_size, learning_rate = 0.01, contraction_level = .1, corrup
     """
     # allocate symbolic variables for the data
     index = T.lscalar()    # index to a [mini]batch
-    x = T.matrix('x')  # the data is presented as rasterized images
+    x = T.matrix('x')  # the data 
     
     rng = np.random.RandomState(42)
     
     if encoder == 'cA':
         ca = cA(numpy_rng = rng, input = x,
-            n_visible = data.shape[1], n_hidden = n_hidden, n_batchsize = batch_size)
+            n_visible = n_visible, n_hidden = n_hidden, n_batchsize = batch_size)
 
         cost, updates = ca.get_cost_updates(contraction_level = contraction_level,
                                             learning_rate = learning_rate)
@@ -60,7 +65,7 @@ def train(data, batch_size, learning_rate = 0.01, contraction_level = .1, corrup
         )
     elif encoder == 'dA':
         da = dA(numpy_rng = rng, input = x,
-            n_visible = data.shape[1], n_hidden = n_hidden
+            n_visible = n_visible, n_hidden = n_hidden
         )
     
         cost, updates = da.get_cost_updates(
@@ -93,19 +98,22 @@ def train(data, batch_size, learning_rate = 0.01, contraction_level = .1, corrup
         # go through trainng set
         c = []
         for batch_index in range(n_train_batches):
-            b_cost = train(batch_index) # the batch cost
-            c.append(b_cost)
-            if encoder == 'cA':
-                epoch_costs.append(np.mean(b_cost[0]))
-            elif encoder == 'dA':
-                epoch_costs.append(np.mean(b_cost))
+            c.append(train(batch_index))
 
         c_array = np.vstack(c)
         if encoder == 'cA':
-            print('Training epoch %d, reconstruction cost ' % epoch, np.mean(
-                c_array[0]), ' jacobian norm ', np.mean(np.sqrt(c_array[1])))
+            cost = np.mean(c_array[:,0], dtype='float64')
+            if epoch % 100 == 0:
+                print('Training epoch %d, reconstruction cost ' % epoch, cost, 
+                      ' jacobian norm ', np.mean(np.sqrt(c_array[:,1])))
+            
         elif encoder == 'dA':
-            print('Training epoch %d, cost ' % epoch, np.mean(c_array, dtype='float64'))
+            cost = np.mean(c_array, dtype='float64')
+            if epoch % 100 == 0:
+                print('Training epoch %d, cost ' % epoch, cost)
+            
+        # store epoch cost
+        epoch_costs.append(cost)
 
     end_time = timeit.default_timer()
 
@@ -119,11 +127,67 @@ def train(data, batch_size, learning_rate = 0.01, contraction_level = .1, corrup
     elif encoder == 'dA':
         return (da.W.get_value(borrow=True).T, epoch_costs)
 
-def analyse(input_file, **args):
+def analyse(args):
     """
     Performs input data analysis
     """
+    print("Start analysis of: %s and saving scores to: %s" % (args.input_file, args.out_file))
+    
+    # load input data array
+    data = np.load(args.input_file)
+    
+    # set batch size
+    if args.batch_size == None:
+        batch_size = 1
+    else:
+        batch_size = args.batch_size
+        
+    print("The batch size: %d" % batch_size)
+    
+    shared_data = theano.shared(np.asarray(data, dtype=theano.config.floatX), 
+                                borrow = True)
+    
+    scores, costs = train(shared_data, batch_size = batch_size, 
+                          n_visible = data.shape[1], n_hidden = args.n_hidden, 
+                          learning_rate = args.learning_rate,
+                          contraction_level = args.contraction_level,
+                          corruption_level = args.corruption_level,
+                          training_epochs = args.training_epochs,
+                          encoder = args.encoder)
+    
+    # plot results skipping first values
+    plt.title('Costs per epoch')
+    plt.xlabel('epoch')
+    plt.ylabel('cost')
+    x = np.arange(100, args.training_epochs)
+    plt.plot(x, costs[100:args.training_epochs], 'r-')
+    
+    # save found scores
+    utils.checkParentDir(args.out_file, clear = True)
+    np.save(args.out_file, scores)
+    
     
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='The input data preprocessor')
+    parser.add_argument('input_file', default = config.preprocessor_out_file,  
+                        help='the input data file as Numpy array')
+    parser.add_argument('--out_file', default = config.analyzer_scores_out_file, 
+                        help='the file to store analyzer scores output')
+    parser.add_argument('--batch_size',
+                        help='the number of samples per batch')
+    parser.add_argument('--learning_rate', default = 0.1,
+                        help='the learning rate')
+    parser.add_argument('--contraction_level', default = 0.1,
+                        help='the contraction level for contractive auto-encoder')
+    parser.add_argument('--corruption_level', default = 0.1,
+                        help='the corruption level to apply to input data for denoising auto-encoder')
+    parser.add_argument('--n_hidden', default = 16,
+                        help='the number of hidden layer\'s units')
+    parser.add_argument('--training_epochs', default = 10000, #50000,
+                        help='the number of training epochs')
+    parser.add_argument('--encoder', default = 'cA',
+                        help='the auto-encoder type (cA, dA)')
+    args = parser.parse_args()
+    
+    analyse(args)
