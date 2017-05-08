@@ -1,0 +1,7 @@
+File: IO/record_1.csv
+Analysis:
+Reconstruction cost:  3.02420416027
+learning_rate: 0.1000, batch_size: 5, training_epochs: 10000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
