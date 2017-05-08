@@ -23,8 +23,9 @@ import theano.tensor as T
 import config
 import utils
 
-def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01, contraction_level = .1, corruption_level = 0.3, 
-            training_epochs = 100, encoder = 'cA'):
+def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01, 
+          contraction_level = .1, corruption_level = 0.3, 
+          training_epochs = 100, encoder = 'cA'):
     """
     The method to run autoencoder training against provided data with specified
     encoder type
@@ -142,7 +143,7 @@ def analyse(args):
     else:
         batch_size = args.batch_size
         
-    print("The batch size: %d" % batch_size)
+    print("The batch size: %d\n" % batch_size)
     
     shared_data = theano.shared(np.asarray(data, dtype=theano.config.floatX), 
                                 borrow = True)
@@ -162,9 +163,17 @@ def analyse(args):
     x = np.arange(100, args.training_epochs)
     plt.plot(x, costs[100:args.training_epochs], 'r-')
     
+    if args.save_plot:
+        plt.savefig(args.out_file + ".png", format='png')
+    
     # save found scores
-    utils.checkParentDir(args.out_file, clear = True)
+    utils.checkParentDir(args.out_file, clear = False)
     np.save(args.out_file, scores)
+    
+    # print formatted final results
+    print("Reconstruction cost: ", costs[-1])
+    print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, contraction_level: %.2f, encoder: %s" %
+          (args.learning_rate, batch_size, args.training_epochs, args.n_hidden, args.contraction_level, args.encoder))
     
     
 
@@ -174,20 +183,22 @@ if __name__ == '__main__':
                         help='the input data file as Numpy array')
     parser.add_argument('--out_file', default = config.analyzer_scores_out_file, 
                         help='the file to store analyzer scores output')
-    parser.add_argument('--batch_size',
+    parser.add_argument('--batch_size', type=int,
                         help='the number of samples per batch')
-    parser.add_argument('--learning_rate', default = 0.1,
+    parser.add_argument('--learning_rate', default = 0.1, type=float,
                         help='the learning rate')
-    parser.add_argument('--contraction_level', default = 0.1,
+    parser.add_argument('--contraction_level', default = 0.1, type=float,
                         help='the contraction level for contractive auto-encoder')
-    parser.add_argument('--corruption_level', default = 0.1,
+    parser.add_argument('--corruption_level', default = 0.1, type=float,
                         help='the corruption level to apply to input data for denoising auto-encoder')
-    parser.add_argument('--n_hidden', default = 16,
+    parser.add_argument('--n_hidden', default = 16, type=int,
                         help='the number of hidden layer\'s units')
-    parser.add_argument('--training_epochs', default = 10000, #50000,
+    parser.add_argument('--training_epochs', default = 10000, type=int, #50000, 
                         help='the number of training epochs')
     parser.add_argument('--encoder', default = 'cA',
                         help='the auto-encoder type (cA, dA)')
+    parser.add_argument('--save_plot', default = True, type=bool,
+                        help='Flag to indicate whether to save train plot to file')
     args = parser.parse_args()
     
     analyse(args)
