@@ -1,7 +1,100 @@
 File: IO/record_1.csv
 Analysis:
-Reconstruction cost:  3.02420416027
-learning_rate: 0.1000, batch_size: 5, training_epochs: 10000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Reconstruction cost:  3.01345105929
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_2.csv
+Analysis:
+Reconstruction cost:  3.37627740437
+learning_rate: 0.1000, batch_size: 5, training_epochs: 100000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_3.csv
+Analysis:
+Reconstruction cost:  3.98565380412
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_4.csv
+Analysis:
+Reconstruction cost:  3.87951677235
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_5.csv
+Analysis:
+Reconstruction cost:  3.90554285023
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_6.csv
+Analysis:
+Reconstruction cost:  3.41843366657
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_7.csv
+Analysis:
+Reconstruction cost:  3.52670304576
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_8.csv
+Analysis:
+Reconstruction cost:  4.14848357554
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Reconstruction cost:  3.62257001331
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_9.csv
+Analysis:
+Reconstruction cost:  3.26328470126
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_10.csv
+Analysis:
+Reconstruction cost:  3.7644166854
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_11.csv
+Analysis:
+Reconstruction cost:  3.58137700767
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_12.csv
+Analysis:
+Reconstruction cost:  3.4302724194
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_13.csv
+Analysis:
+Reconstruction cost:  3.97755600003
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO/record_14.csv
+Analysis:
+Reconstruction cost:  3.72290237008
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
 Hash:
 
 ====================================
