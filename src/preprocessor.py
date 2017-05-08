@@ -39,7 +39,7 @@ def preprocess(input_file, out_file, dtype = np.float):
     # convert to numpy array and save
     X = np.array(df_norm).astype(dtype)
     
-    utils.checkParentDir(out_file)# Create output directory
+    utils.checkParentDir(out_file, clear = False)# Create output directory
     np.save(out_file, X)
     
 
