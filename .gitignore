@@ -1,5 +1,5 @@
 # the intermediate directories
-out/*
+out/intermediate/*
 Docs/*
 
 # The auxiliary projects
