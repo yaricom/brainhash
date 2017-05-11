@@ -21,4 +21,20 @@ def checkParentDir(file, clear = True):
     elif clear == True:
         shutil.rmtree(p_dir)
         os.makedirs(p_dir)
+        
+def buildDataSetFileNames(name_prefix, suffix_range):
+    """
+    Creates list of data set file names given prefix and range of indices. The
+    file name will be in form: name_prefix_0, name_prefix_1, etc
+    Arguments:
+        name_prefix the prefix to start file name with
+        suffix_range the range of index suffixes to append to file name
+    Return:
+        the list of file names creted from provided suffix and indexes range
+    """
+    names = []
+    for i in suffix_range:
+        names.append(name_prefix + str(i))
+        
+    return names
 
