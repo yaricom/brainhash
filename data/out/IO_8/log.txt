@@ -1,0 +1,104 @@
+File: IO_8/record_1.csv
+Analysis:
+Reconstruction cost:  3.39614437691
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_2.csv
+Analysis:
+Reconstruction cost:  3.61164827391
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_3.csv
+Analysis:
+Reconstruction cost:  3.82048420281
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_4.csv
+Analysis:
+Reconstruction cost:  3.85930123689
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_5.csv
+Analysis:
+Reconstruction cost:  3.64382818177
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_6.csv
+Analysis:
+Reconstruction cost:  3.80797859812
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_7.csv
+Analysis:
+Reconstruction cost:  3.80697824625
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_8.csv
+Analysis:
+Reconstruction cost:  3.06979163204
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_9.csv
+Analysis:
+Reconstruction cost:  3.86010556435
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_10.csv
+Analysis:
+Reconstruction cost:  3.67381105378
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_11.csv
+Analysis:
+Reconstruction cost:  3.91578643707
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_12.csv
+Analysis:
+Reconstruction cost:  3.67160692675
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_13.csv
+Analysis:
+Reconstruction cost:  3.35419205565
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_14.csv
+Analysis:
+Reconstruction cost:  3.49449029808
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: IO_8/record_15.csv
+Analysis:
+
+Hash:
+
+====================================
