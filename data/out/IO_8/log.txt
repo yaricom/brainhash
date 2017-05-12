@@ -98,7 +98,15 @@ Hash:
 ====================================
 File: IO_8/record_15.csv
 Analysis:
+Reconstruction cost:  4.04047320584
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
 
+====================================
+File: IO_8/record_16.csv
+Analysis:
+Reconstruction cost:  3.74154246907
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
 Hash:
 
 ====================================
