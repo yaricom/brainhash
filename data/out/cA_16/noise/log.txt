@@ -1,0 +1,14 @@
+File: noise/noise_1.csv
+Analysis:
+Reconstruction cost:  2.58854240821
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/noise_2.csv
+Analysis:
+Reconstruction cost:  2.77004989306
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 16, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================

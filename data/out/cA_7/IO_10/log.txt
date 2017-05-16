@@ -1,0 +1,105 @@
+File: noise/io_1.csv
+Analysis:
+Reconstruction cost:  3.04183167976
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_2.csv
+Analysis:
+Reconstruction cost:  3.4381943711
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_3.csv
+Analysis:
+Reconstruction cost:  4.059348126
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_4.csv
+Analysis:
+Reconstruction cost:  3.93648193018
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_5.csv
+Analysis:
+Reconstruction cost:  3.98359225786
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_6.csv
+Analysis:
+Reconstruction cost:  3.48291823757
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_7.csv
+Analysis:
+Reconstruction cost:  3.56527719339
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_8.csv
+Analysis:
+Reconstruction cost:  3.69190731704
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_9.csv
+Analysis:
+Reconstruction cost:  3.28797054777
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_10.csv
+Analysis:
+Reconstruction cost:  3.83342604384
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_11.csv
+Analysis:
+Reconstruction cost:  3.62521710462
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_12.csv
+Analysis:
+Reconstruction cost:  3.47088858464
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_13.csv
+Analysis:
+Reconstruction cost:  4.0401007121
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_14.csv
+Analysis:
+Reconstruction cost:  3.79284785132
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: noise/io_15.csv
+Analysis:
+Reconstruction cost:  4.01054236659
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
