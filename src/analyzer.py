@@ -173,8 +173,12 @@ def analyse(args):
     
     # print formatted final results
     print("Reconstruction cost: ", costs[-1])
-    print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, contraction_level: %.2f, encoder: %s" %
-          (args.learning_rate, batch_size, args.training_epochs, args.n_hidden, args.contraction_level, args.encoder))
+    if args.encoder == 'cA':
+        print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, contraction_level: %.2f, encoder: %s" %
+              (args.learning_rate, batch_size, args.training_epochs, args.n_hidden, args.contraction_level, args.encoder))
+    elif args.encoder == 'dA':
+        print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, corruption_level: %.2f, encoder: %s" %
+              (args.learning_rate, batch_size, args.training_epochs, args.n_hidden, args.corruption_level, args.encoder))
     
     
 
