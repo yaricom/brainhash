@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import utils
 
 
-def loadDataFrame(path, name_prefixes):
+def loadDataFrame(path, name_prefixes, c_size = 16):
     """
     Creates data frame from numpy data arrays within specified directory with given names.
     The loaded arrays with be PCA transformed to reduce dimensions to one and saved into
@@ -23,6 +23,7 @@ def loadDataFrame(path, name_prefixes):
     Arguments:
         path the directory path
         name_prefixes the array of names prefixes for arrays to be loaded
+        c_size the size of column
     Return:
         the data frame with PCA transformed arrays
     """
@@ -32,7 +33,7 @@ def loadDataFrame(path, name_prefixes):
         file = path + "/" + name + ".npy"
         raw_data = np.load(file)
         data = pca.fit_transform(raw_data)
-        df[name] = data.reshape(16) # store PCA transformed
+        df[name] = data.reshape(c_size) # store PCA transformed
         
     return df
     

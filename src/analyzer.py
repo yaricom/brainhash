@@ -156,19 +156,20 @@ def analyse(args):
                           training_epochs = args.training_epochs,
                           encoder = args.encoder)
     
+    # check output directory
+    utils.checkParentDir(args.out_file, clear = False)
+    np.save(args.out_file, scores)
+    
     # plot results skipping first values
     plt.title('Costs per epoch')
     plt.xlabel('epoch')
     plt.ylabel('cost')
     x = np.arange(100, args.training_epochs)
     plt.plot(x, costs[100:args.training_epochs], 'r-')
-    
+
+    # save plot
     if args.save_plot:
         plt.savefig(args.out_file + ".png", format='png')
-    
-    # save found scores
-    utils.checkParentDir(args.out_file, clear = False)
-    np.save(args.out_file, scores)
     
     # print formatted final results
     print("Reconstruction cost: ", costs[-1])
