@@ -1,0 +1,112 @@
+File: io_8/io_1.csv
+Analysis:
+Reconstruction cost:  3.65029904114
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_2.csv
+Analysis:
+Reconstruction cost:  3.95982229063
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_3.csv
+Analysis:
+Reconstruction cost:  4.26237224402
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_4.csv
+Analysis:
+Reconstruction cost:  4.14592676161
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_5.csv
+Analysis:
+Reconstruction cost:  3.9825085419
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_6.csv
+Analysis:
+Reconstruction cost:  4.38551446986
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_7.csv
+Analysis:
+Reconstruction cost:  4.17059698265
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_8.csv
+Analysis:
+Reconstruction cost:  3.51389182865
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_9.csv
+Analysis:
+Reconstruction cost:  4.29771101152
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_10.csv
+Analysis:
+Reconstruction cost:  4.28853599246
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_11.csv
+Analysis:
+Reconstruction cost:  4.30827442159
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_12.csv
+Analysis:
+Reconstruction cost:  4.17879085024
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_13.csv
+Analysis:
+Reconstruction cost:  3.69638729432
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_14.csv
+Analysis:
+Reconstruction cost:  3.85830509518
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_15.csv
+Analysis:
+Reconstruction cost:  4.4227764075
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
+File: io_8/io_16.csv
+Analysis:
+Reconstruction cost:  4.22542138189
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 7, corruption_level: 0.30, encoder: dA
+Hash:
+
+====================================
