@@ -38,3 +38,16 @@ def buildDataSetFileNames(name_prefix, suffix_range):
         
     return names
 
+def stripOutliers(df, multiplier = 2.0):
+    """
+    Strips outliers from provided data set
+    Arguments:
+        df the data frame to process
+        multiplier the std multiplier to be used for outliers detection
+    """
+    mean = df.mean()
+    std = df.std()
+    df[df < (mean - multiplier * std)] = 0
+    df[df > (mean + multiplier * std)] = 0
+    return df
+
