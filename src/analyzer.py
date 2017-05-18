@@ -23,6 +23,9 @@ import theano.tensor as T
 import config
 import utils
 
+# the names of bands to be accepted
+bands = ['delta', 'thetha', 'alpha_l', 'alpha_h', 'beta_l', 'beta_h', 'gamma_l', 'gamma_h']
+
 def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01, 
           contraction_level = .1, corruption_level = 0.3, 
           training_epochs = 100, encoder = 'cA'):
@@ -137,6 +140,12 @@ def analyse(args):
     # load input data array
     data = np.load(args.input_file)
     
+    if args.bands != 'all':
+        indx = []
+        for name in args.bands.split(','):
+            indx.append(bands.index(name))
+        data = data[:, indx]
+    
     # set batch size
     if args.batch_size == None:
         batch_size = 1
@@ -204,6 +213,8 @@ if __name__ == '__main__':
                         help='the auto-encoder type (cA, dA)')
     parser.add_argument('--save_plot', default = True, type=bool,
                         help='Flag to indicate whether to save train plot to file')
+    parser.add_argument('--bands', default = 'all',
+                        help='The names of EEG bands to process')
     args = parser.parse_args()
     
     analyse(args)
