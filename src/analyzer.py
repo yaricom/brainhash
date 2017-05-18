@@ -24,7 +24,7 @@ import config
 import utils
 
 # the names of bands to be accepted
-bands = ['delta', 'thetha', 'alpha_l', 'alpha_h', 'beta_l', 'beta_h', 'gamma_l', 'gamma_h']
+bands = ['delta', 'theta', 'alpha_l', 'alpha_h', 'beta_l', 'beta_h', 'gamma_l', 'gamma_h']
 
 def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01, 
           contraction_level = .1, corruption_level = 0.3, 
