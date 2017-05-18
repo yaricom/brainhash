@@ -36,7 +36,17 @@ def loadDataFrame(path, name_prefixes, c_size = 16):
         df[name] = data.reshape(c_size) # store PCA transformed
         
     return df
-    
+
+def buildDataFrame(path, name_prefixes):
+    df = pd.DataFrame()
+    for name in name_prefixes:
+        file = path + "/" + name + ".npy"
+        raw_data = np.load(file)
+        c_size = raw_data.shape[0] * raw_data.shape[1]
+        df[name] = raw_data.reshape(c_size)
+        
+    return df
+        
     
 def visualize(df, mask_correlation = 0.1):
     """
