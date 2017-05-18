@@ -1,0 +1,21 @@
+File: io_10_6_1.csv
+Analysis:
+Reconstruction cost:  0.693291950865
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 2, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: io_10_6_2.csv
+Analysis:
+Reconstruction cost:  0.93573233518
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 2, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
+File: io_10_6_3.csv
+Analysis:
+Reconstruction cost:  0.962312529719
+learning_rate: 0.1000, batch_size: 5, training_epochs: 50000, n_hidden: 2, contraction_level: 0.10, encoder: cA
+Hash:
+
+====================================
