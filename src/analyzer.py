@@ -73,7 +73,7 @@ def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01,
         )
     
         cost, updates = da.get_cost_updates(
-            corruption_level = 0.3,
+            corruption_level = corruption_level,
             learning_rate = learning_rate
         )
     
