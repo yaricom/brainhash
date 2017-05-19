@@ -8,4 +8,4 @@
         --contraction_level 0.1 --corruption_level 0.3 \
         --n_hidden 2 --training_epochs 50000 \
         --encoder cA $1 --save_plot True \
-        --bands theta,alpha_h
+        --bands delta,alpha_h
