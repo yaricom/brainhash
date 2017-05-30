@@ -14,9 +14,15 @@ import pandas as pd
 from time import time
 
 from sklearn.model_selection import GridSearchCV
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
 from sklearn.gaussian_process.kernels import RBF
 from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 def report(results, n_top=3):
     """
@@ -63,18 +69,56 @@ def runClassifier(name, X, y):
         X the input data samples
         y the target labels per input samples
     """
+    random_state = 42
     if name == 'RandomForestClassifier':
-        param_dist = {"max_depth": [3, None],
+        param_dist = {"max_depth": [3, 5, 8, None],
                       "max_features": [1, 3, 4],
                       "min_samples_split": [2, 3, 4],
                       "min_samples_leaf": [1, 3, 10],
                       "bootstrap": [True, False],
                       "criterion": ["gini", "entropy"],
-                      "n_estimators": [20]}
-        clf = RandomForestClassifier(n_estimators=20)
+                      "n_estimators": [10, 20, 50, 100]}
+        clf = RandomForestClassifier(n_estimators=20, random_state = random_state)
+    elif name == 'AdaBoostClassifier':
+        param_dist = {"learning_rate": [0.01, 0.1, 1],
+                      "n_estimators": [10, 20, 50, 100]}
+        clf = AdaBoostClassifier(random_state = random_state)
+    elif name == 'DecisionTreeClassifier':
+        param_dist = {"max_depth": [3, 5, 8, None],
+                      "min_samples_split": [2, 3, 4],
+                      "min_samples_leaf": [1, 3, 10, 20, 30]
+                      }
+        clf = DecisionTreeClassifier(random_state = random_state)
     elif name == 'GaussianProcessClassifier':
         param_dist = {"warm_start": [True, False]}
-        clf = GaussianProcessClassifier(1.0 * RBF(1.0))
+        clf = GaussianProcessClassifier(1.0 * RBF(1.0), random_state = random_state)
+    elif name == 'MLPClassifier':
+        param_dist = {"alpha": [0.0001, 0.001, 0.01],
+                      "learning_rate_init": [0.001, 0.01, 0.1, 0.5],
+                      "momentum": [0.9, 0.99, 0.999],
+                      "solver": ["lbfgs", "sgd", "adam"],
+                      "activation" : ["logistic", "tanh", "relu"],
+                      "hidden_layer_sizes": [4, 8, 10]}
+        clf = MLPClassifier(max_iter = 1000, random_state = random_state)
+    elif name == 'KNeighborsClassifier':
+        param_dist = {"n_neighbors": [2, 3, 5],
+                      "algorithm" : ["ball_tree", "kd_tree", "brute"]}
+        clf = KNeighborsClassifier(random_state = random_state)
+    elif name == 'GaussianNB':
+        param_dist = {"priors": [None]}
+        clf = GaussianNB()
+    elif name == 'QuadraticDiscriminantAnalysis':
+        param_dist = {"priors": [None],
+                      "reg_param": [0.0, 0.01, 0.1, 0.9]}
+        clf = QuadraticDiscriminantAnalysis()
+    elif name == 'RBF_SVM':
+        param_dist = {"C": [0.1, 0.5, 1.0],
+                      "gamma": [0.1, 0.5, 1.0, 2.0, 3.0, 'auto']}
+        clf = SVC(random_state = random_state)
+    elif name == 'LINEAR_SVM':
+        param_dist = {"C": [0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0]}
+        clf = SVC(random_state = random_state, kernel="linear")
+        
         
     cv_results = fitClassifier(X, y, clf, param_dist)
     report(cv_results)
