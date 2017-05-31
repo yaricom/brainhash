@@ -12,8 +12,6 @@ from sklearn.decomposition import PCA
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-import utils
-
 
 def loadDataFrame(path, name_prefixes, c_size = 16):
     """
