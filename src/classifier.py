@@ -24,7 +24,19 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
-def report(results, n_top=3):
+# the classifiers names
+clf_names = ['RandomForestClassifier',
+             'AdaBoostClassifier',
+             'DecisionTreeClassifier',
+             'GaussianProcessClassifier',
+             'MLPClassifier',
+             'KNeighborsClassifier',
+             'GaussianNB',
+             'QuadraticDiscriminantAnalysis',
+             'RBF_SVM',
+             'LINEAR_SVM']
+
+def printReport(results, n_top = 3):
     """
     The Utility function to report best scores
     Arguments:
@@ -61,7 +73,7 @@ def fitClassifier(X, y, clf, param_dist):
           % (time() - start, len(grid_search.cv_results_['params'])))
     return grid_search.cv_results_
 
-def runClassifier(name, X, y):
+def runClassifier(name, X, y, print_report = False):
     """
     Method to run specific classifier over provided data to build best prediction model
     Arguments:
@@ -121,19 +133,39 @@ def runClassifier(name, X, y):
         
         
     cv_results = fitClassifier(X, y, clf, param_dist)
-    report(cv_results)
+    if print_report:
+        printReport(cv_results)
+        
+    return cv_results
     
-def buildDataSet(signal_csv, noise_csv):
+def findBestResults(X, y):
     """
-    Method to build data set from provided CSV files
+    Method to run all classifiers and find best results
+    Arguments:
+        X the input data samples
+        y the target labels per input samples
+    """
+    results = {}
+    for name in clf_names:
+        cv_results = runClassifier(name, X, y)
+        results[name] = cv_results
+        
+    # print performance reports per classifier
+    print("-----------------------------------")
+    for name in clf_names:
+        printReport(results[name], n_top = 1)
+    
+def loadDataSet(signal_csv, noise_csv):
+    """
+    Method to load data set from provided CSV files
     Arguments:
         signal_csv the CSV file with signal data
         noise_csv the CSV file with noise data
     Returns:
         the tuple (X, y) with data samples and target labels (1 - signal, 0 - noise)
     """
-    df_signal = pd.read_csv(signal_csv, index_col=0)
-    df_noise = pd.read_csv(noise_csv, index_col=0)
+    df_signal = pd.read_csv(signal_csv)
+    df_noise = pd.read_csv(noise_csv)
     # combine
     df_data = df_signal.join(df_noise)
     X = np.asarray(df_data).T
@@ -148,3 +180,12 @@ if __name__ == '__main__':
                         help='the signal data file as CSV')
     parser.add_argument('noise_file_csv',  
                         help='the noise data file as CSV')
+    
+    args = parser.parse_args()
+    
+    X, y = loadDataSet(args.signal_file_csv, args.noise_file_csv)
+    clzs = np.unique(y)
+    print("Data set load complete. Samples [%d], targets [%d], classes [%d]" % 
+          (X.shape[0], y.shape[0], clzs.shape[0]))
+    findBestResults(X, y)
+    
