@@ -15,12 +15,12 @@ help () {
     
 }
 
-if [ "$#" -ne 2 ]; then
+if [[ "$#" -lt 2 ]; then
     help
     exit 0
 fi
 
-if [ "$#" -ne 3 ]; then
+if [[ "$#" -ne 3 ]]; then
     START=1
 else
     START=$3
