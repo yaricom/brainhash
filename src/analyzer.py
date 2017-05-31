@@ -131,26 +131,27 @@ def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01,
     elif encoder == 'dA':
         return (da.W.get_value(borrow=True).T, epoch_costs)
 
-def analyse(args):
+def analyse(input_file, out_file, batch_size, learning_rate, contraction_level,
+            corruption_level, n_hidden, training_epochs, encoder, bands, save_plot):
     """
     Performs input data analysis
     """
-    print("Start analysis of: %s and saving scores to: %s" % (args.input_file, args.out_file))
+    print("Start analysis of: %s and saving scores to: %s" % (input_file, out_file))
     
     # load input data array
-    data = np.load(args.input_file)
+    data = np.load(input_file)
     
-    if args.bands != 'all':
+    if bands != 'all':
         indx = []
-        for name in args.bands.split(','):
+        for name in bands.split(','):
             indx.append(bands.index(name))
         data = data[:, indx]
     
     # set batch size
-    if args.batch_size == None:
+    if batch_size == None:
         batch_size = 1
     else:
-        batch_size = args.batch_size
+        batch_size = batch_size
         
     print("The batch size: %d\n" % batch_size)
     
@@ -158,36 +159,36 @@ def analyse(args):
                                 borrow = True)
     
     scores, costs = train(shared_data, batch_size = batch_size, 
-                          n_visible = data.shape[1], n_hidden = args.n_hidden, 
-                          learning_rate = args.learning_rate,
-                          contraction_level = args.contraction_level,
-                          corruption_level = args.corruption_level,
-                          training_epochs = args.training_epochs,
-                          encoder = args.encoder)
+                          n_visible = data.shape[1], n_hidden = n_hidden, 
+                          learning_rate = learning_rate,
+                          contraction_level = contraction_level,
+                          corruption_level = corruption_level,
+                          training_epochs = training_epochs,
+                          encoder = encoder)
     
     # check output directory
-    utils.checkParentDir(args.out_file, clear = False)
-    np.save(args.out_file, scores)
+    utils.checkParentDir(out_file, clear = False)
+    np.save(out_file, scores)
     
     # plot results skipping first values
     plt.title('Costs per epoch')
     plt.xlabel('epoch')
     plt.ylabel('cost')
-    x = np.arange(100, args.training_epochs)
-    plt.plot(x, costs[100:args.training_epochs], 'r-')
+    x = np.arange(100, training_epochs)
+    plt.plot(x, costs[100:training_epochs], 'r-')
 
     # save plot
-    if args.save_plot:
-        plt.savefig(args.out_file + ".png", format='png')
+    if save_plot:
+        plt.savefig(out_file + ".png", format='png')
     
     # print formatted final results
     print("Reconstruction cost: ", costs[-1])
-    if args.encoder == 'cA':
+    if encoder == 'cA':
         print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, contraction_level: %.2f, encoder: %s" %
-              (args.learning_rate, batch_size, args.training_epochs, args.n_hidden, args.contraction_level, args.encoder))
-    elif args.encoder == 'dA':
+              (learning_rate, batch_size, args.training_epochs, n_hidden, contraction_level, encoder))
+    elif encoder == 'dA':
         print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, corruption_level: %.2f, encoder: %s" %
-              (args.learning_rate, batch_size, args.training_epochs, args.n_hidden, args.corruption_level, args.encoder))
+              (learning_rate, batch_size, args.training_epochs, n_hidden, corruption_level, encoder))
     
     
 
@@ -217,4 +218,14 @@ if __name__ == '__main__':
                         help='The names of EEG bands to process')
     args = parser.parse_args()
     
-    analyse(args)
+    analyse(input_file = args.input_file, 
+            out_file = args.out_file,
+            batch_size = args.batch_size, 
+            learning_rate = args.learning_rate,
+            contraction_level = args.contraction_level,
+            corruption_level = args.corruption_level,
+            n_hidden = args.n_hidden,
+            training_epochs = args.training_epochs,
+            encoder = args.encoder,
+            save_plot = args.save_plot,
+            bands = args.bands)

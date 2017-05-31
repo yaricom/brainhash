@@ -115,7 +115,7 @@ def runClassifier(name, X, y, print_report = False):
     elif name == 'KNeighborsClassifier':
         param_dist = {"n_neighbors": [2, 3, 5],
                       "algorithm" : ["ball_tree", "kd_tree", "brute"]}
-        clf = KNeighborsClassifier(random_state = random_state)
+        clf = KNeighborsClassifier()
     elif name == 'GaussianNB':
         param_dist = {"priors": [None]}
         clf = GaussianNB()
@@ -153,7 +153,9 @@ def findBestResults(X, y):
     # print performance reports per classifier
     print("-----------------------------------")
     for name in clf_names:
+        print(name + " classifier results:")
         printReport(results[name], n_top = 1)
+        print("-----------------------------------")
     
 def loadDataSet(signal_csv, noise_csv):
     """
