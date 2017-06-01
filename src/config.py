@@ -12,8 +12,10 @@ data_dir = "../data"
 out_dir = "../out"
 # The intermediate output directory
 intermediate_dir = out_dir + "/intermediate" 
-# The analuzer output directory
+# The analyzer output directory
 analyzer_out_dir = out_dir + "/analyzer"
+# The samples output directory
+samples_out_dir = out_dir + "/samples"
 
 # the preprocessor output file
 preprocessor_out_file = intermediate_dir + "/preprocessed_results.npy"

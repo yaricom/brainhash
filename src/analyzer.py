@@ -171,6 +171,7 @@ def analyse(input_file, out_file, batch_size, learning_rate, contraction_level,
     np.save(out_file, scores)
     
     # plot results skipping first values
+    plt.figure()
     plt.title('Costs per epoch')
     plt.xlabel('epoch')
     plt.ylabel('cost')
@@ -184,11 +185,11 @@ def analyse(input_file, out_file, batch_size, learning_rate, contraction_level,
     # print formatted final results
     print("Reconstruction cost: ", costs[-1])
     if encoder == 'cA':
-        print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, contraction_level: %.2f, encoder: %s" %
-              (learning_rate, batch_size, args.training_epochs, n_hidden, contraction_level, encoder))
+        print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, contraction_level: %.2f, encoder: %s\n" %
+              (learning_rate, batch_size, training_epochs, n_hidden, contraction_level, encoder))
     elif encoder == 'dA':
-        print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, corruption_level: %.2f, encoder: %s" %
-              (learning_rate, batch_size, args.training_epochs, n_hidden, corruption_level, encoder))
+        print("learning_rate: %.4f, batch_size: %d, training_epochs: %d, n_hidden: %d, corruption_level: %.2f, encoder: %s\n" %
+              (learning_rate, batch_size, training_epochs, n_hidden, corruption_level, encoder))
     
     
 

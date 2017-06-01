@@ -38,6 +38,20 @@ def buildDataSetFileNames(name_prefix, suffix_range):
         
     return names
 
+def listFiles(path, extension):
+    """
+    List all files under specified path with given extension
+    Arguments:
+        path the path to files folder
+        extension the file extension for files to be included
+    """
+    f_list = []
+    for file in os.listdir(path):
+        if file.endswith(extension):
+            f_list.append(file)
+            
+    return f_list
+
 def stripOutliers(df, multiplier = 2.0):
     """
     Strips outliers from provided data set

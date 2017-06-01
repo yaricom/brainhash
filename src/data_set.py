@@ -10,6 +10,8 @@ import os
 import pandas as pd
 import numpy as np
 
+import utils as u
+
 def loadSessionRecords(folder):
     """
     Load records from provided folder and creates dataframe with flattened numpy arrays loaded
@@ -48,7 +50,7 @@ def joinSessionRecords(parent_dir, records):
             
     return df
 
-def createDataSet(signal_dir, signal_records, noise_dir, out_dir, join_signals = True):
+def saveDataSet(signal_dir, signal_records, noise_dir, out_dir, out_suffix, join_signals = True):
     """"
     Creates data set and saves it into out_dir folder as list of CSV files
     Arguments:
@@ -56,27 +58,47 @@ def createDataSet(signal_dir, signal_records, noise_dir, out_dir, join_signals =
         signal_records the list of signal records identifiers (sessions, subjects, etc)
         noise_dir the folder with noise records data
         out_dir the output directory to hold results
+        out_suffix the suffix to append to generated files
         join_signals the flag to indicate whether signal records should be joined (Default: True)
     """
+    if os.path.exists(out_dir) == False:
+        os.makedirs(out_dir)
+    
     if join_signals:
         signal_df = joinSessionRecords(signal_dir, signal_records)
-        path = "%s/signal.csv" % (out_dir)
+        path = "%s/signal_%s.csv" % (out_dir, out_suffix)
         signal_df.to_csv(path, index = False)
         print("Signal data saved to: " + path)
     else:
         for rec in signal_records:
             signal_df = loadSessionRecords(signal_dir + "/" + rec)
-            path = "%s/%s.csv" % (out_dir, rec)
+            path = "%s/%s_%s.csv" % (out_dir, rec, out_suffix)
             signal_df.to_csv(path, index = False)
             print("Signal data saved to: " + path)
             
     noise_df = loadSessionRecords(noise_dir)
-    path = "%s/noise.csv" % (out_dir)
+    path = "%s/noise_%s.csv" % (out_dir, out_suffix)
     noise_df.to_csv(path, index = False)
     print("Noise data saved to: " + path)
             
     
-        
+def loadDataSet(signal_csv, noise_csv):
+    """
+    Method to load data set from provided CSV files
+    Arguments:
+        signal_csv the CSV file with signal data
+        noise_csv the CSV file with noise data
+    Returns:
+        the tuple (X, y) with data samples and target labels (1 - signal, 0 - noise)
+    """
+    df_signal = pd.read_csv(signal_csv)
+    df_noise = pd.read_csv(noise_csv)
+    # combine
+    df_data = df_signal.join(df_noise)
+    X = np.asarray(df_data).T
+    y = np.zeros(df_data.shape[1])
+    y[:df_signal.shape[1]] = 1
+    return X, y
     
     
 

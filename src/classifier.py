@@ -9,7 +9,6 @@ The results classifier
 import argparse
 
 import numpy as np
-import pandas as pd
 
 from time import time
 
@@ -23,6 +22,8 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+
+import data_set as ds
 
 # the classifiers names
 clf_names = ['RandomForestClassifier',
@@ -157,24 +158,6 @@ def findBestResults(X, y):
         printReport(results[name], n_top = 1)
         print("-----------------------------------")
     
-def loadDataSet(signal_csv, noise_csv):
-    """
-    Method to load data set from provided CSV files
-    Arguments:
-        signal_csv the CSV file with signal data
-        noise_csv the CSV file with noise data
-    Returns:
-        the tuple (X, y) with data samples and target labels (1 - signal, 0 - noise)
-    """
-    df_signal = pd.read_csv(signal_csv)
-    df_noise = pd.read_csv(noise_csv)
-    # combine
-    df_data = df_signal.join(df_noise)
-    X = np.asarray(df_data).T
-    y = np.zeros(df_data.shape[1])
-    y[:df_signal.shape[1]] = 1
-    return X, y
-    
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='The data samples classifier')
@@ -185,7 +168,7 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
-    X, y = loadDataSet(args.signal_file_csv, args.noise_file_csv)
+    X, y = ds.loadDataSet(args.signal_file_csv, args.noise_file_csv)
     clzs = np.unique(y)
     print("Data set load complete. Samples [%d], targets [%d], classes [%d]" % 
           (X.shape[0], y.shape[0], clzs.shape[0]))
