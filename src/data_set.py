@@ -10,8 +10,6 @@ import os
 import pandas as pd
 import numpy as np
 
-import utils as u
-
 def loadSessionRecords(folder):
     """
     Load records from provided folder and creates dataframe with flattened numpy arrays loaded

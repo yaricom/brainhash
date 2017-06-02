@@ -66,7 +66,7 @@ def runEEGAnalyzer(input_file, out_file, a_config):
                n_hidden=a_config['n_hidden'],
                training_epochs=a_config['training_epochs'],
                encoder=a_config['encoder'],
-               bands=a_config['bands'],
+               in_bands=a_config['bands'],
                save_plot=a_config['save_plot'])
     
 def runClassifier(signal_dir, signal_records, noise_dir, out_suffix):
