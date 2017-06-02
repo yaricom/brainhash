@@ -24,7 +24,7 @@ import config
 import utils
 
 # the names of bands to be accepted
-bands = ['delta', 'theta', 'alpha_l', 'alpha_h', 'beta_l', 'beta_h', 'gamma_l', 'gamma_h']
+bands_names = ['delta', 'theta', 'alpha_l', 'alpha_h', 'beta_l', 'beta_h', 'gamma_l', 'gamma_h']
 
 def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01, 
           contraction_level = .1, corruption_level = 0.3, 
@@ -132,7 +132,7 @@ def train(data, batch_size, n_visible, n_hidden = 7, learning_rate = 0.01,
         return (da.W.get_value(borrow=True).T, epoch_costs)
 
 def analyse(input_file, out_file, batch_size, learning_rate, contraction_level,
-            corruption_level, n_hidden, training_epochs, encoder, bands, save_plot):
+            corruption_level, n_hidden, training_epochs, encoder, in_bands, save_plot):
     """
     Performs input data analysis
     """
@@ -141,10 +141,11 @@ def analyse(input_file, out_file, batch_size, learning_rate, contraction_level,
     # load input data array
     data = np.load(input_file)
     
-    if bands != 'all':
+    if in_bands != 'all':
         indx = []
-        for name in bands.split(','):
-            indx.append(bands.index(name))
+        for name in in_bands.split(','):
+            indx.append(bands_names.index(name))
+            print("%s -> %d" % (name,bands_names.index(name)))
         data = data[:, indx]
     
     # set batch size
@@ -153,7 +154,7 @@ def analyse(input_file, out_file, batch_size, learning_rate, contraction_level,
     else:
         batch_size = batch_size
         
-    print("The batch size: %d\n" % batch_size)
+    print("The batch size: %d" % batch_size)
     
     shared_data = theano.shared(np.asarray(data, dtype=theano.config.floatX), 
                                 borrow = True)
