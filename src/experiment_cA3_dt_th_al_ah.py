@@ -11,7 +11,7 @@ import experiment as ex
 import config
 from time import time
 
-experiment_name = 'cA_6_dt-th-a_l-a_h' # will be used as parent dir for analyzer results
+experiment_name = 'cA_3_dt-th-a_l-a_h' # will be used as parent dir for analyzer results
 
 # The sample records identifiers
 signal_ids = ['IO_10_2', 'IO_TXT', 'IO_SKY', 'KS_10_2', 'RO_10_2']
