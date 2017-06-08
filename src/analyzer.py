@@ -230,4 +230,4 @@ if __name__ == '__main__':
             training_epochs = args.training_epochs,
             encoder = args.encoder,
             save_plot = args.save_plot,
-            bands = args.bands)
+            in_bands = args.bands)
