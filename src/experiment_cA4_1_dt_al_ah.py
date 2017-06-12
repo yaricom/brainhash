@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 4, delta, alpha low, alpha high, batch size = 5 and 
+The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 4, delta, alpha low, alpha high, batch size = 1 and 
 balanced data set
 
 @author: yaric
