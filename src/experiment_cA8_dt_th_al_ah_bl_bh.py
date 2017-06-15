@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 6, delta, theta, alpha low, alpha high, beta low, beta high, batch size = 5 and 
+The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 8, delta, theta, alpha low, alpha high, beta low, beta high, batch size = 5 and 
 balanced data set
 
 @author: yaric
@@ -11,9 +11,9 @@ import experiment as ex
 import config
 from time import time
 
-n_hidden = 6
+n_hidden = 8
 
-experiment_name = 'cA_%d_dt-th-a_l-a_h-b_l-b_h' % (n_hidden) # will be used as parent dir for analyzer results
+experiment_name = 'cA_%d_dt-th-a_l-a_h-b_l-b_h' % (n_hidden)  # will be used as parent dir for analyzer results
 
 # The sample records identifiers
 signal_ids = ['IO_10_2', 'IO_TXT', 'IO_SKY', 'KS_10_2', 'RO_10_2']
@@ -60,4 +60,3 @@ ex.runClassifier(signal_dir=signal_dir,
 
 print("\n\nExperiment %s took %.2f seconds.\n"
           % (experiment_name, time() - start))
-

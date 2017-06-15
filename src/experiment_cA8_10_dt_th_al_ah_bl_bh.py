@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 6, delta, theta, alpha low, alpha high, beta low, beta high, batch size = 5 and 
+The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 8, delta, theta, alpha low, alpha high, beta low, beta high, batch size = 10 and 
 balanced data set
 
 @author: yaric
@@ -11,9 +11,10 @@ import experiment as ex
 import config
 from time import time
 
-n_hidden = 6
+n_hidden = 8
+batch_size = 10
 
-experiment_name = 'cA_%d_dt-th-a_l-a_h-b_l-b_h' % (n_hidden) # will be used as parent dir for analyzer results
+experiment_name = 'cA_%d_%d_dt-th-a_l-a_h-b_l-b_h' % (n_hidden, batch_size) # will be used as parent dir for analyzer results
 
 # The sample records identifiers
 signal_ids = ['IO_10_2', 'IO_TXT', 'IO_SKY', 'KS_10_2', 'RO_10_2']
@@ -21,7 +22,7 @@ noise_ids  = ['noise']
 
 # Setup analyzer configuration
 analyzer_config = ex.defaultAnalyzerConfig()
-analyzer_config['batch_size']       = 5
+analyzer_config['batch_size']       = batch_size
 analyzer_config['learning_rate']    = 0.1
 analyzer_config['n_hidden']         = n_hidden
 analyzer_config['training_epochs']  = 50000
@@ -29,6 +30,8 @@ analyzer_config['encoder']          = 'cA'
 analyzer_config['bands']            = 'delta,theta,alpha_l,alpha_h,beta_l,beta_h'
 
 start = time()
+
+print("\nExperiment: %s\n" % experiment_name)
 
 #
 # Run analyzer
@@ -60,4 +63,3 @@ ex.runClassifier(signal_dir=signal_dir,
 
 print("\n\nExperiment %s took %.2f seconds.\n"
           % (experiment_name, time() - start))
-
