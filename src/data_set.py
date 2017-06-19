@@ -79,6 +79,39 @@ def saveDataSet(signal_dir, signal_records, noise_dir, out_dir, out_suffix, join
     noise_df.to_csv(path, index = False)
     print("Noise data saved to: " + path)
             
+
+def loadDataSetWithLabels(signal_csv, signal_labels, noise_csv):
+    """
+    Method to load data set from provided CSV files
+    Arguments:
+        signal_csv the CSV file with signal data
+        signal_labels the list with prefixes of column names to be defined as labesl
+        noise_csv the CSV file with noise data
+    Returns:
+        the tuple (X, y) with data samples and target labels (0 - noise, 1...len(signal_labels) - signals)
+    """
+    df_signal = pd.read_csv(signal_csv)
+    df_noise = pd.read_csv(noise_csv)
+    
+    print("Loading data set with signal labels %s" % signal_labels)
+    df_data = df_signal.join(df_noise)
+    df_data = df_data.T
+    X = np.asarray(df_data)
+    df_y = df_data.loc[:,[0]]
+    df_y[0] = 0
+    
+    rows = df_data.index._data.astype(str)
+    label = 1
+    for lbl in signal_labels:
+        selection = rows[np.char.startswith(rows, lbl)]
+        df_y.loc[selection,:] = label
+        print("Added %d rows with label %d starting with row index name %s" % (len(selection), label, lbl))
+        label += 1
+        
+    y = np.asarray(df_y)
+    return X, y
+        
+    
     
 def loadDataSet(signal_csv, noise_csv):
     """
