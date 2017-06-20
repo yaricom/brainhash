@@ -80,13 +80,14 @@ def saveDataSet(signal_dir, signal_records, noise_dir, out_dir, out_suffix, join
     print("Noise data saved to: " + path)
             
 
-def loadDataSetWithLabels(signal_csv, signal_labels, noise_csv):
+def loadDataSetWithLabels(signal_csv, signal_labels, noise_csv, max_cls_samples = -1):
     """
     Method to load data set from provided CSV files
     Arguments:
         signal_csv the CSV file with signal data
         signal_labels the list with prefixes of column names to be defined as labesl
         noise_csv the CSV file with noise data
+        max_cls_samples the maximal number of class samples to include
     Returns:
         the tuple (X, y) with data samples and target labels (0 - noise, 1...len(signal_labels) - signals)
     """
@@ -94,21 +95,37 @@ def loadDataSetWithLabels(signal_csv, signal_labels, noise_csv):
     df_noise = pd.read_csv(noise_csv)
     
     print("Loading data set with signal labels %s" % signal_labels)
-    df_data = df_signal.join(df_noise)
-    df_data = df_data.T
-    X = np.asarray(df_data)
-    df_y = df_data.loc[:,[0]]
-    df_y[0] = 0
-    
+    df_data = df_signal.T
+    X_df, y = None, None
     rows = df_data.index._data.astype(str)
     label = 1
     for lbl in signal_labels:
         selection = rows[np.char.startswith(rows, lbl)]
-        df_y.loc[selection,:] = label
-        print("Added %d rows with label %d starting with row index name %s" % (len(selection), label, lbl))
-        label += 1
+        if max_cls_samples > 0:
+            up_to = min(len(selection), max_cls_samples)
+        else:
+            up_to = len(selection)
+        if X_df is None:
+            X_df = pd.DataFrame(df_data.loc[selection[:up_to],:])
+            y = np.full((up_to,), label, dtype=float)
+        else:
+            X_df = X_df.append(df_data.loc[selection[:up_to],:])
+            y = np.append(y, np.full((up_to,), label, dtype=float))
         
-    y = np.asarray(df_y)
+        print("Added %d rows with label %d starting with row index name %s" % (up_to, label, lbl))
+        label += 1
+    
+    # add noise
+    df_noise = df_noise.T
+    if max_cls_samples > 0:
+        up_to = min(len(df_noise), max_cls_samples)
+    else:
+        up_to = len(df_noise)
+        
+    X_df = X_df.append(df_noise.iloc[:up_to,])
+    y = np.append(y, np.zeros((up_to,), dtype=float))
+
+    X = np.asarray(X_df)
     return X, y
         
     

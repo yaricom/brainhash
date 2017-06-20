@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 5, delta, theta, alpha low, alpha high, beta low, beta high, batch size = 1 and 
+The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 5, delta, theta, alpha low, alpha high, beta low, beta high, batch size = 10 and 
 multiclass data set (unbalanced)
 
 @author: yaric
@@ -12,9 +12,9 @@ import config
 from time import time
 
 n_hidden = 5
-batch_size = 1
+batch_size = 10
 
-experiment_name = 'cA_%d_%d_dt-th-a_l-a_h-b_l-b_h' % (n_hidden, batch_size) # will be used as parent dir for analyzer results
+experiment_name = 'cA_%d_%d_dt-th-a_l-a_h-b_l-b_h_multiclass' % (n_hidden, batch_size) # will be used as parent dir for analyzer results
 
 # The sample records identifiers
 signal_ids = ['IO_10_2', 'IO_TXT', 'IO_SKY', 'KS_10_2', 'RO_10_2']
