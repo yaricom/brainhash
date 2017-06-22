@@ -90,7 +90,7 @@ def runClassifier(name, X, y, print_report = False):
                       "min_samples_leaf": [1, 3, 10],
                       "bootstrap": [True, False],
                       "criterion": ["gini", "entropy"],
-                      "n_estimators": [10, 20, 50, 100]}
+                      "n_estimators": [10, 20, 50, 100, 200]}
         clf = RandomForestClassifier(n_estimators=20, random_state = random_state)
     elif name == 'AdaBoostClassifier':
         param_dist = {"learning_rate": [0.01, 0.1, 1],

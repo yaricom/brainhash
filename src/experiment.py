@@ -69,7 +69,8 @@ def runEEGAnalyzer(input_file, out_file, a_config):
                in_bands=a_config['bands'],
                save_plot=a_config['save_plot'])
     
-def runClassifier(signal_dir, signal_records, noise_dir, out_suffix, multilabels = False, signal_class_labels = None):
+def runClassifier(signal_dir, signal_records, noise_dir, out_suffix, multilabels = False, 
+                  signal_class_labels = None, max_cls_samples = -1):
     """
     Runs classifier over analyzed signal/noise records
     Arguments:
@@ -79,6 +80,7 @@ def runClassifier(signal_dir, signal_records, noise_dir, out_suffix, multilabels
         out_suffix the suffix to append to generated files
         multilabels the flag to indicate if multilabels should be applied to the data set
         signal_class_labels the signal labels to use when finding multilables
+        max_cls_samples the maximal number of class samples to include [-1 to include all]
     """
     # Generate and save data set
     ds.saveDataSet(signal_dir=signal_dir, 
@@ -95,7 +97,8 @@ def runClassifier(signal_dir, signal_records, noise_dir, out_suffix, multilabels
          X, y = ds.loadDataSetWithLabels(
                  signal_csv=signal_csv_path,
                  signal_labels=signal_class_labels,
-                 noise_csv=noise_csv_path)
+                 noise_csv=noise_csv_path,
+                 max_cls_samples=max_cls_samples)
     else:
         X, y = ds.loadDataSet(
                 signal_csv=signal_csv_path,

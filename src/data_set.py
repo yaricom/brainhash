@@ -87,7 +87,7 @@ def loadDataSetWithLabels(signal_csv, signal_labels, noise_csv, max_cls_samples 
         signal_csv the CSV file with signal data
         signal_labels the list with prefixes of column names to be defined as labesl
         noise_csv the CSV file with noise data
-        max_cls_samples the maximal number of class samples to include
+        max_cls_samples the maximal number of class samples to include [-1 to include all]
     Returns:
         the tuple (X, y) with data samples and target labels (0 - noise, 1...len(signal_labels) - signals)
     """
