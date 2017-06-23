@@ -12,7 +12,7 @@ import config
 from time import time
 
 n_hidden = 5
-batch_size = 1
+batch_size = 10
 max_cls_samples = 7
 
 experiment_name = 'dA_%d_%d_dt-th-a_l-a_h-b_l-b_h_multiclass_%d' % (n_hidden, batch_size, max_cls_samples) # will be used as parent dir for analyzer results
