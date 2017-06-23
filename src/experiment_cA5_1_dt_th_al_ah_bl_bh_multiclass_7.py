@@ -38,7 +38,7 @@ start = time()
 #
 print("\nStart analysis with parameters:\n%s\n" % analyzer_config)
 print("Start analysis for signal records: %s" % signal_ids)
-"""
+
 ex.runEEGAnalyzerWithIDs(ids_list=signal_ids, 
                          experiment_name=experiment_name,
                          a_config=analyzer_config)
@@ -47,7 +47,7 @@ print("Start analysis for noise records: %s" % noise_ids)
 ex.runEEGAnalyzerWithIDs(ids_list=noise_ids, 
                          experiment_name=experiment_name,
                          a_config=analyzer_config)
-"""
+
 
 #
 # Run classifiers
