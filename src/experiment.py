@@ -111,4 +111,34 @@ def runClassifier(signal_dir, signal_records, noise_dir, out_suffix, multilabels
     clf.findBestResults(X, y)
     
     
-
+def runSignalsOnlyClassifier(signal_dir, signal_records, out_suffix,
+                  signal_class_labels, max_cls_samples = -1):
+    """
+    Runs classifier over analyzed signal/noise records
+    Arguments:
+        signal_dir the parent folder for all signal records
+        signal_records the list of signal records identifiers (sessions, subjects, etc)
+        out_suffix the suffix to append to generated files
+        signal_class_labels the signal labels to use when finding multilables
+        max_cls_samples the maximal number of class samples to include [-1 to include all]
+    """
+    # Generate and save data set
+    ds.saveDataSet(signal_dir=signal_dir, 
+                   signal_records=signal_records, 
+                   noise_dir=None,
+                   out_dir=conf.samples_out_dir,
+                   out_suffix=out_suffix,
+                   join_signals = True)
+    
+    # Load data set
+    signal_csv_path = "%s/signal_%s.csv" % (conf.samples_out_dir, out_suffix)
+    X, y = ds.loadDataSetWithSignals(
+             signal_csv=signal_csv_path,
+             signal_labels=signal_class_labels,
+             max_cls_samples=max_cls_samples)
+    
+    # Do classification
+    clzs = np.unique(y)
+    print("Data set load complete. Samples [%d], targets [%d], classes [%d]" % 
+          (X.shape[0], y.shape[0], clzs.shape[0]))
+    clf.findBestResults(X, y)

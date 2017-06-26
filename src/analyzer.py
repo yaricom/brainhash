@@ -182,6 +182,9 @@ def analyse(input_file, out_file, batch_size, learning_rate, contraction_level,
     # save plot
     if save_plot:
         plt.savefig(out_file + ".png", format='png')
+        
+    # close plot
+    plt.close()
     
     # print formatted final results
     print("Reconstruction cost: ", costs[-1])
