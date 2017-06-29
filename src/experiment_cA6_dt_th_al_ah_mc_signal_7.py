@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 3, delta, theta, alpha low, alpha high, batch size = 5 and 
+The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 6, delta, theta, alpha low, alpha high, batch size = 5 and 
 multiclass data set (BALANCED) with signal only data
 
 @author: yaric
@@ -11,7 +11,7 @@ import experiment as ex
 import config
 from time import time
 
-n_hidden = 3
+n_hidden = 6
 batch_size = 5
 max_cls_samples = 7
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 3, delta, theta, alpha low, alpha high, batch size = 5 and 
+The experiment with 10 Hz/5Hz, wisp, attention, 70, cA 4, delta, theta, alpha low, batch size = 5 and 
 multiclass data set (BALANCED) with signal only data
 
 @author: yaric
@@ -11,11 +11,11 @@ import experiment as ex
 import config
 from time import time
 
-n_hidden = 3
+n_hidden = 4
 batch_size = 5
 max_cls_samples = 7
 
-experiment_name = 'cA_%d_%d_dt-th-a_l-a_h_mc_signal_%d' % (n_hidden, batch_size, max_cls_samples) # will be used as parent dir for analyzer results
+experiment_name = 'cA_%d_%d_dt-th-a_l_mc_signal_%d' % (n_hidden, batch_size, max_cls_samples) # will be used as parent dir for analyzer results
 
 # The sample records identifiers
 signal_ids = ['IO_10_2', 'KS_10_2', 'RO_10_2']
@@ -28,7 +28,7 @@ analyzer_config['learning_rate']    = 0.1
 analyzer_config['n_hidden']         = n_hidden
 analyzer_config['training_epochs']  = 50000
 analyzer_config['encoder']          = 'cA'
-analyzer_config['bands']            = 'delta,theta,alpha_l,alpha_h'
+analyzer_config['bands']            = 'delta,theta,alpha_l'
 
 start = time()
 
